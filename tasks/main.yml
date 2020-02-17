@@ -98,7 +98,7 @@
 
     when: http_type.stdout == 'nginx'
 
-  when: ansible_distribution == 'CentOS'
+  when: ansible_os_family == 'RedHat'
 
 - debug: msg="Not Support Ubuntu"
-  when: ansible_distribution == 'Ubuntu'
+  when: ansible_os_family == 'Debian'
