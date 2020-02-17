@@ -93,7 +93,7 @@
     - name: Copy phpMyAdmin Configuration for nginx
       copy: src=phpMyAdmin-nginx.conf dest=/etc/nginx/extra/phpmyadmin.conf
       
-    - name: apache service restart
+    - name: nginx service restart
       service: name=nginx state=restarted
 
     when: http_type.stdout == 'nginx'
