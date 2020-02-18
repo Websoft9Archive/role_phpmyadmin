@@ -1,2 +1,5 @@
-phpmyadmin_mysql_password: 123456
+phpmyadmin_mysql_password: "123456"
 phpmyadmin_php_version: "7.2"
+phpmyadmin_download_url:
+  '4.0': "https://files.phpmyadmin.net/phpMyAdmin/4.0.10.20/phpMyAdmin-4.0.10.20-all-languages.zip"
+  '4.9': "https://files.phpmyadmin.net/phpMyAdmin/4.9.1/phpMyAdmin-4.9.1-all-languages.zip"
