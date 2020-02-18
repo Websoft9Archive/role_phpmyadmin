@@ -18,14 +18,14 @@
 
   - name: Dowload phpMyAdmin
     unarchive:
-      src: {{phpmyadmin_download_url['1']}}
+      src: {{phpmyadmin_download_url[1]}}
       dest: /data/apps
       remote_src: yes
     when: phpmyadmin_php_version <= "5.4"
 
   - name: Dowload phpMyAdmin
     unarchive:
-      src: {{phpmyadmin_download_url['2']}}
+      src: {{phpmyadmin_download_url[2]}}
       dest: /data/apps
       remote_src: yes
     when: phpmyadmin_php_version > "5.5"
