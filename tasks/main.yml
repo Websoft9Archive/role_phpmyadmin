@@ -16,14 +16,14 @@
         group: "{{http_type.stdout}}"
         mode: 0755
 
-  - name: Dowload phpMyAdmin
+  - name: Download phpMyAdmin
     unarchive:
       src: "{{phpmyadmin_download_url.old}}"
       dest: /data/apps
       remote_src: yes
     when: phpmyadmin_php_version <= "5.4"
 
-  - name: Dowload phpMyAdmin
+  - name: Download phpMyAdmin
     unarchive:
       src: "{{phpmyadmin_download_url.new}}"
       dest: /data/apps
@@ -32,8 +32,8 @@
 
   - name: phpMyadmin directory rename
     shell: mv /data/apps/phpMyAdmin-* /data/apps/phpmyadmin
+    ignore_errors: True
   
-
   - name: phpMyadmin Configuration
     copy: 
       src: config.inc.php
