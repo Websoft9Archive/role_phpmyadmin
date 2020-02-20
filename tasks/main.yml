@@ -16,24 +16,24 @@
         group: "{{http_type.stdout}}"
         mode: 0755
 
-  - name: Dowload phpMyAdmin
+  - name: Download phpMyAdmin
     unarchive:
-      src: https://files.phpmyadmin.net/phpMyAdmin/4.0.10.20/phpMyAdmin-4.0.10.20-all-languages.zip
+      src: "{{phpmyadmin_download_url.old}}"
       dest: /data/apps
       remote_src: yes
     when: phpmyadmin_php_version <= "5.4"
 
-  - name: Dowload phpMyAdmin
+  - name: Download phpMyAdmin
     unarchive:
-      src: https://files.phpmyadmin.net/phpMyAdmin/4.9.1/phpMyAdmin-4.9.1-all-languages.zip
+      src: "{{phpmyadmin_download_url.new}}"
       dest: /data/apps
       remote_src: yes
     when: phpmyadmin_php_version > "5.5"
 
   - name: phpMyadmin directory rename
     shell: mv /data/apps/phpMyAdmin-* /data/apps/phpmyadmin
+    ignore_errors: True
   
-
   - name: phpMyadmin Configuration
     copy: 
       src: config.inc.php
