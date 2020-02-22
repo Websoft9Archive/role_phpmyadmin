@@ -110,5 +110,5 @@
 
   when: ansible_os_family == 'RedHat'
 
-- debug: msg="Not Support Ubuntu"
+- debug: msg="Not Support Ubuntu this time, coming soon..."
   when: ansible_os_family == 'Debian'
