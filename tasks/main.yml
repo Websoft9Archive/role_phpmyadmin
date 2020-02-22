@@ -3,8 +3,7 @@
   - set_fact: 
       phpmyadmin_owner: "www-data"
     when: ansible_os_family == 'Debian'
-  
-    - set_fact: 
+  - set_fact: 
       phpmyadmin_owner: "{{ phpmyadmin_webs }}"
     when: ansible_os_family == 'RedHat'
     
