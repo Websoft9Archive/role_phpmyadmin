@@ -1,24 +1,19 @@
 ---
+
+- set_fact: 
+    phpmyadmin_owner: "www-data"
+  when: ansible_os_family == 'Debian'
+- set_fact: 
+    phpmyadmin_owner: "{{ phpmyadmin_webs }}"
+  when: ansible_os_family == 'RedHat'
+
 - block:
-  - set_fact: 
-      phpmyadmin_owner: "www-data"
-    when: ansible_os_family == 'Debian'
-  - set_fact: 
-      phpmyadmin_owner: "{{ phpmyadmin_webs }}"
-    when: ansible_os_family == 'RedHat'
-  
   - debug:
       msg: owner is {{phpmyadmin_owner}}
     
   - name: Check whether the local machine contains MySQL
     shell: curl -Is 127.0.0.1:3306 > /dev/null;echo $?
     register: check_mysqlserver
-  
-  - name: Create apps directory
-    file: 
-        path: /data/apps
-        state: directory
-        mode: 0750
 
   - name: Remove phpmyadmin if it exist
     shell: |
@@ -31,14 +26,14 @@
         state: directory
         mode: 0750
 
-  - name: Download phpMyAdmin
+  - name: Download phpMyAdmin from {{phpmyadmin_download_url.old}}
     unarchive:
       src: "{{phpmyadmin_download_url.old}}"
       dest: /data/apps
       remote_src: yes
     when: phpmyadmin_php_version <= "5.4"
 
-  - name: Download phpMyAdmin
+  - name: Download phpMyAdmin from {{phpmyadmin_download_url.new}}
     unarchive:
       src: "{{phpmyadmin_download_url.new}}"
       dest: /data/apps
