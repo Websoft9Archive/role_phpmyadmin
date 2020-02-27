@@ -61,7 +61,7 @@ Ansible Role: phpmyadmin
   
   vars:
     phpmyadmin_webs: 'apache'
-    phpmyadmin_password: '123456'
+    phpmyadmin_mysql_password: '123456'
     phpmyadmin_php_version: '7.2'
 
   roles:
